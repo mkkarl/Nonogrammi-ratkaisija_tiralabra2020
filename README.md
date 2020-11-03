@@ -10,3 +10,5 @@ Harjoitustyössä toteutetaan nonogrammiratkaisija.
 ### Viikkoraportointi
 
 [Viikkoraportti 1](https://github.com/mkkarl/Nonogrammi-ratkaisija_tiralabra2020/blob/master/Nonogrammiratkaisija/Dokumentaatio/Viikkoraportti1.md)
+
+[Viikkoraportti 2](https://github.com/mkkarl/Nonogrammi-ratkaisija_tiralabra2020/blob/master/Nonogrammiratkaisija/Dokumentaatio/Viikkoraportti2.md)

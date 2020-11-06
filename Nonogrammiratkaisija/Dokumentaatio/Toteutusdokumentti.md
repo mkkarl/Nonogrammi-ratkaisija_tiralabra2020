@@ -6,7 +6,7 @@
 - tila (musta / tyhjä / ei tietoa)
 - mahdolliset pätkät
 
-*Luokan `Ruutu` avulla luodaan taulukko `Ruutu[][] ruudukko`*
+*Luokan* `Ruutu`* avulla luodaan taulukko* `Ruutu[][] ruudukko`
 
 `Patka`
 - pätkän pituus
@@ -17,7 +17,7 @@
 - valmis (T/F)
 - odottaa käsittelyä (T/F)
 
-*Luokat `Ppatka` ja `Vpatka` perivät luokan `Patka`*
+*Luokat* `Ppatka` *ja* `Vpatka` *perivät luokan* `Patka`.
 
 ## Algoritmin toiminta
 

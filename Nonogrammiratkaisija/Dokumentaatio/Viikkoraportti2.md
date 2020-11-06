@@ -8,3 +8,5 @@ Perehdyin aiempien kurssien materiaaliin ja kirjoitin ohjaajalle alustavasta suu
 Torstaina kehitin algoritmihahmotelmaa uuteen suuntaan. (3 h)
 
 Perjantaina dokumentaation kirjoittelua. (2,5 h)
+
+Perjantaina lisäksi koodin kirjoituksen aloitus ja yritys luoda yksikkötestejä. (4h)

@@ -45,7 +45,7 @@ public class RuutuTest {
     // @Test
     // public void hello() {}
     
-    public void palauttaaET() {
-        assertTrue(ruutu.getTila().equals("ET"));
+    public void palauttaaKasittelematon() {
+        assertEquals(0, this.ruutu.getTila());
     }
 }

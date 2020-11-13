@@ -60,12 +60,12 @@ public class Ruutu {
     @Override
     public String toString() {
         if (tila == 1) {
-            return ".";
+            return " ";
         } else if (tila == 2) {
             return "O";
         }
         
-        return "?";
+        return "-";
     }
     
 }

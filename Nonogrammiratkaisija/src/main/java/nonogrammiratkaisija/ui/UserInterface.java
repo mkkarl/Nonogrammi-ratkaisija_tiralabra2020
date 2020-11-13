@@ -80,8 +80,11 @@ public class UserInterface {
             } else {
                 rivit[i] = syote;
             }
+
         }
-        
+
+        logiikka.luoRivitSarakkeet(rivit, true);
+
         for (int i = 0; i < leveys; i++) {
             System.out.print("Sarake " + (i + 1) + ": ");
             String syote = lukija.nextLine();
@@ -90,7 +93,10 @@ public class UserInterface {
             } else {
                 sarakkeet[i] = syote;
             }
+
         }
+
+        logiikka.luoRivitSarakkeet(sarakkeet, false);
     }
 
 }

@@ -34,30 +34,7 @@ public class Patka {
         this.odottaaKasittelya = true;
         this.rivi = rivi;
         this.rsNro = rsNro;
-//        this.ruudukko = ruudukko;
 
-//        if (getLiikkumavaraPituus() < pituus * 2) {
-//            this.varmatAlku = this.liikkumavaraLoppu - this.pituus + 1;
-//            this.varmatLoppu = this.liikkumavaraAlku + this.pituus - 1;
-//
-//            for (int i = varmatAlku; i <= varmatLoppu; i++) {
-//                if (rivi) {
-//                    ruudukko[rsNro][i].setMusta();
-//                } else {
-//                    ruudukko[i][rsNro].setMusta();
-//                }
-//            }
-//        }
-//        
-//        for (int i = liikkumavaraAlku; i <= liikkumavaraLoppu; i++) {
-//            if (rivi) {
-//                    ruudukko[rsNro][i].lisaaPatka(this);
-//                } else {
-//                    ruudukko[i][rsNro].lisaaPatka(this);
-//                }
-//        }
-        
-        
     }
     
     public int getPituus() {

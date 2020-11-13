@@ -30,9 +30,37 @@ public class Logiikka {
     }
     
     public void tulostaRuudukko() {
+//        for (int i = 0; i < ruudukko.length; i++) {
+//            for (int j = 0; j < ruudukko[i].length; j++) {
+//                System.out.print(ruudukko[i][j]);
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println("");
+        
+        String[][] kokoRuudukko = new String[ruudukko.length + 1][ruudukko[0].length + 1];
+        
+        for (int i = 1; i < kokoRuudukko.length; i++) {
+            kokoRuudukko[i][0] = rivit[i - 1];
+        }
+        
+        for (int i = 1; i < kokoRuudukko[0].length; i++) {
+            String pystyteksti = "";
+            for (int j = 0; j < sarakkeet[i-1].length(); j++) {
+                pystyteksti += sarakkeet[i-1].substring(j, j) + "\n";
+            }
+            kokoRuudukko[0][i] = pystyteksti;
+        }
+        
         for (int i = 0; i < ruudukko.length; i++) {
             for (int j = 0; j < ruudukko[i].length; j++) {
-                System.out.print(ruudukko[i][j]);
+                kokoRuudukko[i+1][j+1] = ruudukko[i][j].toString();
+            }
+        }
+        
+        for (int i = 0; i < kokoRuudukko.length; i++) {
+            for (int j = 0; j < kokoRuudukko[i].length; j++) {
+                System.out.print(kokoRuudukko[i][j]);
             }
             System.out.println("");
         }
@@ -46,36 +74,6 @@ public class Logiikka {
     public int getLeveys() {
         return ruudukko[0].length;
     }
-    
-//    public void luoRivit(String[] rivit) {
-//        for (int i = 0; i < rivit.length; i++) {
-//            
-//            //erotellaan luvut toisistaan
-//            String[] palat = rivit[i].split(" ");
-//            int[] luvut = new int[palat.length];
-//            for (int j = 0; j < palat.length; j++) {
-//                luvut[j] = Integer.valueOf(palat[j]);
-//            }
-//            
-//            //määritellään pätkien yhteispituus minimiväleillä
-//            int summa = luvut.length - 1;
-//            
-//            for (int luku : luvut) {
-//                summa += luku;
-//            }
-//            
-//            Patka uusiPatka = null;
-//            Patka edellinen = null;
-//            int kertyma = 0;
-//            
-//            for (int j = 0; j < luvut.length; j++) {
-//                uusiPatka = new Patka(luvut[i], kertyma + 1, kertyma + luvut[i] + getLeveys() - summa, edellinen, true, i, ruudukko);
-//                patkat.addFirst(uusiPatka);
-//                edellinen = uusiPatka;
-//                kertyma = luvut[i] + 1;
-//            }
-//        }
-//    }
     
     public void luoRivitSarakkeet(String[] rivitSarakkeet, boolean rivi) {
         for (int i = 0; i < rivitSarakkeet.length; i++) {

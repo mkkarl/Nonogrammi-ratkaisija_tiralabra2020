@@ -45,7 +45,20 @@ public class RuutuTest {
     // @Test
     // public void hello() {}
     
+    @Test
     public void palauttaaKasittelematon() {
-        assertEquals(0, this.ruutu.getTila());
+        assertEquals("-", this.ruutu.toString());
+    }
+    
+    @Test
+    public void palauttaaTyhjan() {
+        this.ruutu.setTyhja();
+        assertEquals(" ", this.ruutu.toString());
+    }
+    
+    @Test
+    public void palauttaaMustan() {
+        this.ruutu.setMusta();
+        assertEquals("O", this.ruutu.toString());
     }
 }

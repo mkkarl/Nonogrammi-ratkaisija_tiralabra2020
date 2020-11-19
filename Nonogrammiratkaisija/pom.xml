@@ -55,6 +55,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
+                        <exclude>nonogrammiratkaisija/Main.java</exclude>
                         <exclude>nonogrammiratkaisija/ui/*</exclude>
                     </excludes>
                 </configuration>

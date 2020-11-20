@@ -177,6 +177,9 @@ public class Logiikka {
             } else if (kasiteltava.odottaaKasittelya()) {
 
                 tyhjatRuudut(kasiteltava);
+                
+                kasiteltava.setEiOdotaKasittelya();
+                edellinenKasitelty = kasiteltava;
             }
 
             if (!kasiteltava.onValmis()) {
@@ -249,6 +252,10 @@ public class Logiikka {
             }
         }
 
+    }
+    
+    public void mustatVarmojenVieressa(Patka patka) {
+        
     }
 
 }

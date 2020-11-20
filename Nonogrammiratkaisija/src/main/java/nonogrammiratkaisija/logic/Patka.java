@@ -61,7 +61,7 @@ public class Patka {
     public void setLiikkumavaraLoppu(int liikkumavaraLoppu) {
         this.liikkumavaraLoppu = liikkumavaraLoppu;
     }
-    
+
     public Patka getEdeltavaPatka() {
         return edeltavaPatka;
     }
@@ -92,6 +92,10 @@ public class Patka {
 
     public boolean odottaaKasittelya() {
         return odottaaKasittelya;
+    }
+
+    public void setEiOdotaKasittelya() {
+        odottaaKasittelya = false;
     }
 
     public boolean onRivi() {

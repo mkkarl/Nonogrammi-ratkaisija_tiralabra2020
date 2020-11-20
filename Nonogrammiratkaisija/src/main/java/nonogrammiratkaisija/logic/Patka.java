@@ -22,12 +22,13 @@ public class Patka {
     private boolean odottaaKasittelya;
     private boolean rivi;   //true = rivi, false = sarake
     private int rsNro; // rivi/sarakenumero
-//    private Ruutu[][] ruudukko;
 
-    public Patka(int pituus, int liikkumavaraAlku, int liikkumavaraLoppu, Patka edeltavaPatka, boolean rivi, int rsNro, Ruutu[][] ruudukko) {
+    public Patka(int pituus, int liikkumavaraAlku, int liikkumavaraLoppu, Patka edeltavaPatka, boolean rivi, int rsNro) {
         this.pituus = pituus;
         this.liikkumavaraAlku = liikkumavaraAlku;
         this.liikkumavaraLoppu = liikkumavaraLoppu;
+        this.varmatAlku = -1;
+        this.varmatLoppu = -1;
         this.edeltavaPatka = edeltavaPatka;
         this.seuraavaPatka = null;
         this.valmis = false;
@@ -36,15 +37,19 @@ public class Patka {
         this.rsNro = rsNro;
 
     }
-    
+
     public int getPituus() {
         return pituus;
     }
-    
+
     public int getLiikkumavaraAlku() {
         return liikkumavaraAlku;
     }
-    
+
+    public void setLiikkumavaraAlku(int liikkumavaraAlku) {
+        this.liikkumavaraAlku = liikkumavaraAlku;
+    }
+
     public int getLiikkumavaraLoppu() {
         return liikkumavaraLoppu;
     }
@@ -52,27 +57,47 @@ public class Patka {
     public int getLiikkumavaraPituus() {
         return liikkumavaraLoppu - liikkumavaraAlku + 1;
     }
+
+    public void setLiikkumavaraLoppu(int liikkumavaraLoppu) {
+        this.liikkumavaraLoppu = liikkumavaraLoppu;
+    }
     
+    public Patka getEdeltavaPatka() {
+        return edeltavaPatka;
+    }
+
+    public void setSeuraavaPatka(Patka patka) {
+        this.seuraavaPatka = patka;
+    }
+
     public void setVarmatAlku(int varmatAlku) {
         this.varmatAlku = varmatAlku;
     }
-    
+
     public int getVarmatAlku() {
         return varmatAlku;
     }
-    
+
     public void setVarmatLoppu(int varmatLoppu) {
         this.varmatLoppu = varmatLoppu;
     }
-    
+
     public int getVarmatLoppu() {
         return varmatLoppu;
     }
-    
-    public boolean getRivi() {
+
+    public boolean onValmis() {
+        return valmis;
+    }
+
+    public boolean odottaaKasittelya() {
+        return odottaaKasittelya;
+    }
+
+    public boolean onRivi() {
         return rivi;
     }
-    
+
     public int getRsNro() {
         return rsNro;
     }

@@ -31,6 +31,7 @@ public class UserInterface {
             System.out.println("L - Luo nonogrammi");
             System.out.println("A - Anna luvut");
             System.out.println("T - Tulosta nonogrammi");
+            System.out.println("R - Ratkaise nonogrammi");
             System.out.println("S - Lopeta");
 
             System.out.print("\nAnna komento: ");
@@ -43,6 +44,8 @@ public class UserInterface {
                 logiikka.tulostaRuudukko();
             } else if (komento.equals("A")) {
                 annaLuvut();
+            } else if (komento.equals("R")) {
+                logiikka.ratkaise();
             } else if (komento.equals("S")) {
                 break;
             } else {

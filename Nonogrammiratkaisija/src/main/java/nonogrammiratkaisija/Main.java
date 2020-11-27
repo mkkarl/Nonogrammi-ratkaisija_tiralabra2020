@@ -5,7 +5,7 @@
  */
 package nonogrammiratkaisija;
 
-import nonogrammiratkaisija.ui.UserInterface;
+import nonogrammiratkaisija.ui.Kayttoliittyma;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UserInterface ui = new UserInterface();
+        Kayttoliittyma ui = new Kayttoliittyma();
         
         ui.kaynnista();
     }

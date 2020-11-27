@@ -6,18 +6,18 @@
 package nonogrammiratkaisija.ui;
 
 import java.util.Scanner;
-import nonogrammiratkaisija.logic.Logiikka;
+import nonogrammiratkaisija.logiikka.Logiikka;
 
 /**
  *
  * @author mari
  */
-public class UserInterface {
+public class Kayttoliittyma {
 
     private Scanner lukija;
     private Logiikka logiikka;
 
-    public UserInterface() {
+    public Kayttoliittyma() {
         this.lukija = new Scanner(System.in);
     }
 

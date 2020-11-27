@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nonogrammiratkaisija.logic;
+package nonogrammiratkaisija.logiikka;
 
 import java.util.*;
 
@@ -16,13 +16,17 @@ public class Ruutu {
     private int rivi;
     private int sarake;
     private int tila;   // 0 = käsittelemätön, 1= tyhjä, 2=musta
-    private List<Patka> patkat;
+//    private List<Patka> patkat;
+    private List<Patka> vpatkat;
+    private List<Patka> ppatkat;
 
     public Ruutu(int rivi, int sarake) {
         this.rivi = rivi;
         this.sarake = sarake;
         this.tila = 0;
-        this.patkat = new ArrayList();
+//        this.patkat = new ArrayList();
+        this.vpatkat = new ArrayList();
+        this.ppatkat = new ArrayList();
     }
 
     public void setTyhja() {
@@ -56,16 +60,41 @@ public class Ruutu {
 
         return false;
     }
+    
+    public boolean onMusta() {
+        if (this.tila == 2) {
+            return true;
+        }
 
-    public void lisaaPatka(Patka patka) {
-        patkat.add(patka);
+        return false;
+    }
+
+//    public void lisaaPatka(Patka patka) {
+//        patkat.add(patka);
+//    }
+    
+    public void lisaaVpatka(Patka patka) {
+        vpatkat.add(patka);
+    }
+    
+    public void lisaaPpatka(Patka patka) {
+        ppatkat.add(patka);
     }
 
     public void poistaPatka(Patka patka) {
-        patkat.remove(patka);
-
-        if (patkat.isEmpty()) {
-            this.setTyhja();
+        
+        if (patka.patkanTyyppi() == "Vpatka") {
+            vpatkat.remove(this);
+            
+            if (vpatkat.isEmpty()) {
+                this.setTyhja();
+            }
+        } else if (patka.patkanTyyppi() == "Ppatka") {
+            ppatkat.remove(this);
+            
+            if (ppatkat.isEmpty()) {
+                this.setTyhja();
+            }
         }
     }
 

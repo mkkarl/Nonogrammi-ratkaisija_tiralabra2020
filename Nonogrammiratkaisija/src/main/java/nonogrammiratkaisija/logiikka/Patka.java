@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nonogrammiratkaisija.logic;
+package nonogrammiratkaisija.logiikka;
 
 /**
  *
@@ -24,6 +24,21 @@ public class Patka {
     private int rsNro; // rivi/sarakenumero
 
     public Patka(int pituus, int liikkumavaraAlku, int liikkumavaraLoppu, Patka edeltavaPatka, boolean rivi, int rsNro) {
+        this.pituus = pituus;
+        this.liikkumavaraAlku = liikkumavaraAlku;
+        this.liikkumavaraLoppu = liikkumavaraLoppu;
+        this.varmatAlku = -1;
+        this.varmatLoppu = -1;
+        this.edeltavaPatka = edeltavaPatka;
+        this.seuraavaPatka = null;
+        this.valmis = false;
+        this.odottaaKasittelya = true;
+        this.rivi = rivi;
+        this.rsNro = rsNro;
+
+    }
+    
+    public Patka(int pituus, int liikkumavaraAlku, int liikkumavaraLoppu, Patka edeltavaPatka) {
         this.pituus = pituus;
         this.liikkumavaraAlku = liikkumavaraAlku;
         this.liikkumavaraLoppu = liikkumavaraLoppu;
@@ -104,6 +119,19 @@ public class Patka {
 
     public int getRsNro() {
         return rsNro;
+    }
+    
+    public int[] koordinaatit(int indeksi) {
+        int[] xy = new int[2];
+        
+        xy[0] = 0;
+        xy[1] = 0;
+        
+        return xy;
+    }
+    
+    public String patkanTyyppi() {
+        return "Patka";
     }
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nonogrammiratkaisija.logic;
+package nonogrammiratkaisija.logiikka;
 
 import java.util.ArrayDeque;
 
@@ -31,41 +31,41 @@ public class Logiikka {
     }
 
     public void tulostaRuudukko() {
-//        for (int i = 0; i < ruudukko.length; i++) {
-//            for (int j = 0; j < ruudukko[i].length; j++) {
-//                System.out.print(ruudukko[i][j]);
-//            }
-//            System.out.println("");
-//        }
-//        System.out.println("");
-
-        String[][] kokoRuudukko = new String[ruudukko.length + 1][ruudukko[0].length + 1];
-
-        for (int i = 1; i < kokoRuudukko.length; i++) {
-            kokoRuudukko[i][0] = rivit[i - 1] + " ";
-        }
-
-        for (int i = 1; i < kokoRuudukko[0].length; i++) {
-            String pystyteksti = "";
-            for (int j = 0; j < sarakkeet[i - 1].length(); j++) {
-                pystyteksti += sarakkeet[i - 1].substring(j, j + 1) + "\n";
-            }
-            kokoRuudukko[0][i] = pystyteksti;
-        }
-
         for (int i = 0; i < ruudukko.length; i++) {
             for (int j = 0; j < ruudukko[i].length; j++) {
-                kokoRuudukko[i + 1][j + 1] = ruudukko[i][j].toString();
-            }
-        }
-
-        for (int i = 0; i < kokoRuudukko.length; i++) {
-            for (int j = 0; j < kokoRuudukko[i].length; j++) {
-                System.out.print(kokoRuudukko[i][j]);
+                System.out.print(ruudukko[i][j]);
             }
             System.out.println("");
         }
         System.out.println("");
+
+//        String[][] kokoRuudukko = new String[ruudukko.length + 1][ruudukko[0].length + 1];
+//
+//        for (int i = 1; i < kokoRuudukko.length; i++) {
+//            kokoRuudukko[i][0] = rivit[i - 1] + " ";
+//        }
+//
+//        for (int i = 1; i < kokoRuudukko[0].length; i++) {
+//            String pystyteksti = "";
+//            for (int j = 0; j < sarakkeet[i - 1].length(); j++) {
+//                pystyteksti += sarakkeet[i - 1].substring(j, j + 1) + "\n";
+//            }
+//            kokoRuudukko[0][i] = pystyteksti;
+//        }
+//
+//        for (int i = 0; i < ruudukko.length; i++) {
+//            for (int j = 0; j < ruudukko[i].length; j++) {
+//                kokoRuudukko[i + 1][j + 1] = ruudukko[i][j].toString();
+//            }
+//        }
+//
+//        for (int i = 0; i < kokoRuudukko.length; i++) {
+//            for (int j = 0; j < kokoRuudukko[i].length; j++) {
+//                System.out.print(kokoRuudukko[i][j]);
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println("");
     }
 
     public int getKorkeus() {
@@ -89,7 +89,7 @@ public class Logiikka {
                 leveysKorkeus = getKorkeus();
             }
 
-            if (rivitSarakkeet[i].isEmpty()) {
+            if (rivitSarakkeet[i].isEmpty()) { // tyhjien rivien ja sarakkeiden käsittely
                 if (rivi) {
                     for (int j = 0; j < getLeveys(); j++) {
                         ruudukko[i][j].setTyhja();
@@ -121,7 +121,14 @@ public class Logiikka {
                 int kertyma = 0;
 
                 for (int j = 0; j < luvut.length; j++) {
-                    uusiPatka = new Patka(luvut[j], kertyma, kertyma + luvut[j] + leveysKorkeus - summa - 1, edellinen, rivi, i);
+//                    uusiPatka = new Patka(luvut[j], kertyma, kertyma + luvut[j] + leveysKorkeus - summa - 1, edellinen, rivi, i);
+
+                    if (rivi) {
+                        uusiPatka = new Vpatka(luvut[j], kertyma, kertyma + luvut[j] + leveysKorkeus - summa - 1, edellinen, i);
+                    } else {
+                        uusiPatka = new Ppatka(luvut[j], kertyma, kertyma + luvut[j] + leveysKorkeus - summa - 1, edellinen, i);
+                    }
+
                     merkitseVarmatAlussa(uusiPatka);
                     patkat.addFirst(uusiPatka);
                     if (edellinen != null) {
@@ -142,19 +149,19 @@ public class Logiikka {
             patka.setVarmatLoppu(varmatLoppu);
 
             for (int i = patka.getVarmatAlku(); i <= patka.getVarmatLoppu(); i++) {
-                if (patka.onRivi()) {
-                    ruudukko[patka.getRsNro()][i].setMusta();
-                } else {
-                    ruudukko[i][patka.getRsNro()].setMusta();
-                }
+                int[] xy = patka.koordinaatit(i);
+                ruudukko[xy[0]][xy[1]].setMusta();
             }
         }
 
         for (int i = patka.getLiikkumavaraAlku(); i <= patka.getLiikkumavaraLoppu(); i++) {
-            if (patka.onRivi()) {
-                ruudukko[patka.getRsNro()][i].lisaaPatka(patka);
-            } else {
-                ruudukko[i][patka.getRsNro()].lisaaPatka(patka);
+
+            int[] xy = patka.koordinaatit(i);
+
+            if (patka.patkanTyyppi().equals("Vpatka")) {
+                ruudukko[xy[0]][xy[1]].lisaaVpatka(patka);
+            } else if (patka.patkanTyyppi().equals("Ppatka")) {
+                ruudukko[xy[0]][xy[1]].lisaaPpatka(patka);
             }
         }
     }
@@ -177,7 +184,7 @@ public class Logiikka {
             } else if (kasiteltava.odottaaKasittelya()) {
 
                 tyhjatRuudut(kasiteltava);
-                
+
                 kasiteltava.setEiOdotaKasittelya();
                 edellinenKasitelty = kasiteltava;
             }
@@ -189,47 +196,30 @@ public class Logiikka {
     }
 
     public void tyhjatRuudut(Patka patka) {
-        int rivi;
-        int sarake;
         int pituuslaskuri = 0;
         int alku = patka.getLiikkumavaraAlku();
         int loppu = patka.getLiikkumavaraLoppu();
 
         for (int i = alku; i <= loppu; i++) {
 
-            if (patka.onRivi()) {
-                rivi = patka.getRsNro();
-                sarake = i;
-            } else {
-                rivi = i;
-                sarake = patka.getRsNro();
-            }
+            int[] xy = patka.koordinaatit(i);
 
-            if (!ruudukko[rivi][sarake].onTyhja()) {
+            if (!ruudukko[xy[0]][xy[1]].onTyhja()) {
                 pituuslaskuri++;
 
             } else {
                 if (pituuslaskuri > 0 && pituuslaskuri < patka.getPituus()) {
                     for (int j = pituuslaskuri; j > 0; j--) {
-                        int riviJ;
-                        int sarakeJ;
 
-                        if (patka.onRivi()) {
-                            riviJ = patka.getRsNro();
-                            sarakeJ = i - j;
-                        } else {
-                            riviJ = i - j;
-                            sarakeJ = patka.getRsNro();
-                        }
-
-                        ruudukko[riviJ][sarakeJ].poistaPatka(patka);
+                        int[] ab = patka.koordinaatit(i - j);
+                        ruudukko[ab[0]][ab[1]].poistaPatka(patka);
                     }
 
                 }
 
                 pituuslaskuri = 0;
 
-                ruudukko[rivi][sarake].poistaPatka(patka);
+                ruudukko[xy[0]][xy[1]].poistaPatka(patka);
                 patka.setLiikkumavaraAlku(i + 1);
             }
 
@@ -237,25 +227,44 @@ public class Logiikka {
 
         if (pituuslaskuri > 0 && pituuslaskuri < patka.getPituus()) {
             for (int j = pituuslaskuri; j > 0; j--) {
-                int riviJ;
-                int sarakeJ;
+                int[] ab = patka.koordinaatit(loppu - j);
 
-                if (patka.onRivi()) {
-                    riviJ = patka.getRsNro();
-                    sarakeJ = loppu - j;
-                } else {
-                    riviJ = loppu - j;
-                    sarakeJ = patka.getRsNro();
-                }
-
-                ruudukko[riviJ][sarakeJ].poistaPatka(patka);
+                ruudukko[ab[0]][ab[1]].poistaPatka(patka);
             }
         }
 
     }
-    
+
     public void mustatVarmojenVieressa(Patka patka) {
-        
+        int alku = patka.getVarmatAlku();
+        int loppu = patka.getVarmatLoppu();
+
+        for (int i = alku - 1; i >= patka.getLiikkumavaraAlku(); i--) {
+
+            int[] xy = patka.koordinaatit(i);
+
+            if (ruudukko[xy[0]][xy[1]].onMusta()) {
+                patka.setVarmatAlku(patka.getVarmatAlku() - 1);
+                patka.setLiikkumavaraLoppu(patka.getLiikkumavaraLoppu() - 1);
+            } else {
+                break;
+            }
+
+        }
+
+        for (int i = loppu + 1; i <= patka.getLiikkumavaraLoppu(); i++) {
+
+            int[] xy = patka.koordinaatit(i);
+
+            if (ruudukko[xy[0]][xy[1]].onMusta()) {
+                patka.setVarmatAlku(patka.getVarmatLoppu() + 1);
+                patka.setLiikkumavaraLoppu(patka.getLiikkumavaraAlku() + 1);
+            } else {
+                break;
+            }
+
+        }
+
     }
 
 }

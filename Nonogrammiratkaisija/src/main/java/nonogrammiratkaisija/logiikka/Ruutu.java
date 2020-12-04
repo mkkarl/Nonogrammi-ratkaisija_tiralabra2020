@@ -19,6 +19,8 @@ public class Ruutu {
 //    private List<Patka> patkat;
     private List<Patka> vpatkat;
     private List<Patka> ppatkat;
+    private Patka varmaVpatka;
+    private Patka varmaPpatka;
 
     public Ruutu(int rivi, int sarake) {
         this.rivi = rivi;
@@ -27,6 +29,8 @@ public class Ruutu {
 //        this.patkat = new ArrayList();
         this.vpatkat = new ArrayList();
         this.ppatkat = new ArrayList();
+        this.varmaVpatka = null;
+        this.varmaPpatka = null;
     }
 
     public void setTyhja() {
@@ -96,6 +100,31 @@ public class Ruutu {
                 this.setTyhja();
             }
         }
+    }
+    
+    public void asetaVarmaPatka(Patka patka) {
+        if (patka.patkanTyyppi().equals("Vpatka")) {
+            this.varmaVpatka = patka;
+        } else if (patka.patkanTyyppi().equals("Ppatka")) {
+            this.varmaPpatka = patka;
+        }
+    }
+    
+//    public void asetaVarmaVpatka(Patka patka) {
+//        this.varmaVpatka = patka;
+//    }
+//    
+//    public void asetaVarmaPpatka(Patka patka) {
+//        this.varmaPpatka = patka;
+//    }
+    
+    public List<Patka> patkaLista(Patka patka) {
+        if (patka.patkanTyyppi().equals("Vpatka")) {
+            return vpatkat;
+        } else if (patka.patkanTyyppi().equals("Ppatka")) {
+            return ppatkat;
+        }
+        return null;
     }
 
     @Override

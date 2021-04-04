@@ -87,6 +87,18 @@ public class Patka {
 
     public void setVarmatAlku(int varmatAlku) {
         this.varmatAlku = varmatAlku;
+        
+        if (this.varmatLoppu == -1) {
+            this.varmatLoppu = this.varmatAlku;
+        }
+        
+//        if (this.liikkumavaraLoppu > this.varmatAlku + pituus - 1) {
+//            this.liikkumavaraLoppu = this.varmatAlku + pituus - 1;
+//        }
+//                
+//        if (this.varmatAlku > this.liikkumavaraAlku + pituus - 1) {
+//            this.varmatLoppu
+//        }
     }
 
     public int getVarmatAlku() {
@@ -95,6 +107,10 @@ public class Patka {
 
     public void setVarmatLoppu(int varmatLoppu) {
         this.varmatLoppu = varmatLoppu;
+        
+        if (this.varmatAlku == -1) {
+            this.varmatAlku = this.varmatLoppu;
+        }
     }
 
     public int getVarmatLoppu() {
@@ -132,6 +148,11 @@ public class Patka {
     
     public String patkanTyyppi() {
         return "Patka";
+    }
+    
+    @Override
+    public String toString() {
+        return  rsNro + "; " + pituus + "; " + liikkumavaraAlku + "; " + varmatAlku + "; " + varmatLoppu + "; " + liikkumavaraLoppu;
     }
 
 }

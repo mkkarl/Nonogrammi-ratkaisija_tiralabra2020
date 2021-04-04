@@ -32,5 +32,10 @@ public class Ppatka extends Patka {
     public String patkanTyyppi() {
         return "Ppatka";
     }
+    
+    @Override
+    public String toString() {
+        return "S" +  super.toString();
+    }
 
 }

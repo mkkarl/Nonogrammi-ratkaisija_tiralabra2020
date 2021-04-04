@@ -32,4 +32,9 @@ public class Vpatka extends Patka {
         return "Vpatka";
     }
     
+    @Override
+    public String toString() {
+        return "R" +  super.toString();
+    }
+    
 }

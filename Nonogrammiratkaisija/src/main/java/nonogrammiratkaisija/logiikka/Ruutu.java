@@ -126,6 +126,15 @@ public class Ruutu {
         }
         return null;
     }
+    
+    public boolean sisRisteavaPatka(Patka patka) {
+        if (patka.patkanTyyppi().equals("Vpatka") && !ppatkat.isEmpty()) {
+            return true;
+        } else if (patka.patkanTyyppi().equals("Ppatka") && !vpatkat.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

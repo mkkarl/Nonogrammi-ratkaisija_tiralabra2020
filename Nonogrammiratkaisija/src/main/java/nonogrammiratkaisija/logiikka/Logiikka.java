@@ -187,6 +187,8 @@ public class Logiikka {
             } else if (edellinenKasitelty == null) {
                 edellinenKasitelty = kasiteltava;
             }
+            
+            kasiteltava.setOdottaaKasittelya(); // poista kun parempi tila-algoritmi tehty
 
             if (kasiteltava.onValmis()) {
                 continue;
@@ -202,6 +204,8 @@ public class Logiikka {
                 mustatEiMuidenAlueella(kasiteltava);
                 System.out.println("käsitelty mustat ei muiden alueella: " + kasiteltava);
 //                tulostaPatkat("käsitelty mustat ei muiden alueella");
+                valmiusTarkistus(kasiteltava);
+                System.out.println("tarkistettu valmius: " + kasiteltava);
 
                 kasiteltava.setEiOdotaKasittelya();
                 edellinenKasitelty = kasiteltava;
@@ -216,8 +220,11 @@ public class Logiikka {
     /*
     Onko liikkumavaraan ilmestynyt tyhjiä ruutuja? Lyhennä liikkumavaraa.
     Päivitä varmat ruudut.
+    - ennen tai jälkeen varmojen
+    - liikkumavaran alussa tai lopussa
+    - alku- tai loppupäässä siten, ettei pätkä enää mahdu toiselle puolelle
      */
-    public void tyhjatRuudut(Patka patka) {
+    public void tyhjatRuudut(Patka patka) { // KORJAA
         int pituuslaskuri = 0;
         int alku = patka.getLiikkumavaraAlku();
         int loppu = patka.getLiikkumavaraLoppu();
@@ -338,7 +345,7 @@ public class Logiikka {
 
                     patka.setLiikkumavaraLoppu(i + patka.getPituus() - 1);
                     patka.setVarmatAlku(i);
-                    
+
                     mustatVarmojenVieressa(patka);
 
                     break;
@@ -380,4 +387,47 @@ public class Logiikka {
     Onko varmoja mustia tarpeeksi? Lisää päätyihin tyhjät, samoin vierekkäiseen
     valmiiseen pätkään tai reunaan asti. Merkitse pätkä valmiiksi.
      */
+    public void valmiusTarkistus(Patka patka) {
+        if (patka.getVarmatAlku() != -1 && patka.getVarmatLoppu() - patka.getVarmatAlku() + 1 == patka.getPituus()) {
+            if (patka.getEdeltavaPatka() == null) {
+                for (int i = 0; i < patka.getVarmatAlku(); i++) {
+                    int[] xy = patka.koordinaatit(i);
+                    ruudukko[xy[0]][xy[1]].setTyhja();
+                }
+
+            } else if (patka.getEdeltavaPatka().onValmis()) {
+                for (int i = patka.getEdeltavaPatka().getVarmatLoppu() + 1; i < patka.getVarmatAlku(); i++) {
+                    int[] xy = patka.koordinaatit(i);
+                    ruudukko[xy[0]][xy[1]].setTyhja();
+                }
+            } else {
+                int[] xy = patka.koordinaatit(patka.getVarmatAlku() - 1);
+                ruudukko[xy[0]][xy[1]].setTyhja();
+            }
+
+            if (patka.getSeuraavaPatka() == null) {
+                if (patka.onRivi()) {
+                    for (int i = patka.getVarmatLoppu() + 1; i < getLeveys(); i++) {
+                        int[] xy = patka.koordinaatit(i);
+                        ruudukko[xy[0]][xy[1]].setTyhja();
+                    }
+                } else {
+                    for (int i = patka.getVarmatLoppu() + 1; i < getKorkeus(); i++) {
+                        int[] xy = patka.koordinaatit(i);
+                        ruudukko[xy[0]][xy[1]].setTyhja();
+                    }
+                }
+            } else if (patka.getSeuraavaPatka().onValmis()) {
+                for (int i = patka.getVarmatLoppu() + 1; i < patka.getSeuraavaPatka().getVarmatAlku(); i++) {
+                    int[] xy = patka.koordinaatit(i);
+                    ruudukko[xy[0]][xy[1]].setTyhja();
+                }
+            } else {
+                int[] xy = patka.koordinaatit(patka.getVarmatLoppu() + 1);
+                ruudukko[xy[0]][xy[1]].setTyhja();
+            }
+
+            patka.setValmis();
+        }
+    }
 }

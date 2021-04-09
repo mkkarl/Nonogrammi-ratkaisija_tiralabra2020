@@ -84,6 +84,10 @@ public class Patka {
     public void setSeuraavaPatka(Patka patka) {
         this.seuraavaPatka = patka;
     }
+    
+    public Patka getSeuraavaPatka() {
+        return seuraavaPatka;
+    }
 
     public void setVarmatAlku(int varmatAlku) {
         this.varmatAlku = varmatAlku;
@@ -116,6 +120,10 @@ public class Patka {
     public int getVarmatLoppu() {
         return varmatLoppu;
     }
+    
+    public void setValmis() {
+        valmis = true;
+    }
 
     public boolean onValmis() {
         return valmis;
@@ -123,6 +131,10 @@ public class Patka {
 
     public boolean odottaaKasittelya() {
         return odottaaKasittelya;
+    }
+    
+    public void setOdottaaKasittelya() {
+        odottaaKasittelya = true;
     }
 
     public void setEiOdotaKasittelya() {
